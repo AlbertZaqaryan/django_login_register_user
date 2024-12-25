@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{% block header %}{% endblock %}</h1>
+        <a href="{% url 'index' %}">Home</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'cart' %}">Cart</a>
+            <a href="{% url 'logout' %}">{{ user.username }} Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">login</a>
+            <a href="{% url 'register' %}">register</a>
+        {% endif %}
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+    <footer>
+        <p>&copy; 2024 Stationery Store. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/scipt.js' %}"></script>
+</body>
+</html>

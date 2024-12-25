@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block header %}Products{% endblock %}
+
+
+{% block body %}
+<main>
+    <section class="product-list">
+        <h2>Products</h2>
+        <div class="product-container">
+            {% for i in book_list %}
+            <div class="product-card">
+                <h3>{{ i.name }}</h3>
+                <img src="{{ i.image.url }}" alt="Product Image">
+                <p>{{ i.author }}</p>
+                <h5>{{ i.price }}</h5>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'add_to_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}" id="">
+                        <button type="submit" name="book_id" value="{{ i.id }}">Buy</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'register' %}"><button type="submit">Buy</button></a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+
+{% endblock %}

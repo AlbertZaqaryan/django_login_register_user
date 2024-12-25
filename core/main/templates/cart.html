@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart page{% endblock %}
+
+{% block header %}Cart{% endblock %}
+
+{% block body %}
+<main>
+    <section class="product-list">
+        <h2>Cart</h2>
+        {% for i in cart_list %}
+            {% if i.user.id == user.id %}
+                <div id="products" class="products">
+                    <img src="{{ i.book.image.url }}" alt="{{ i.book.name }}" class="product-image">
+                    <div class="product-details">
+                        <p class="product-name">{{ i.book.name }}</p>
+                        <p class="product-price">${{ i.cart_price }}</p>
+                        <p class="product-count">count x{{ i.count }}</p>
+                        <form action="{% url 'delete_from_cart' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="cart_object_id" value="{{ i.id }}">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+        {% endfor %}
+    </section>
+</main>
+
+<style>
+    .product-list {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .products {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .product-image {
+        width: 100px;
+        height: auto;
+        margin-right: 1rem;
+        border-radius: 5px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-name {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+        color: #555;
+    }
+</style>
+{% endblock %}
