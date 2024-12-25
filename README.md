@@ -35,4 +35,6 @@
       -  password1
       -  password2
     confirm registration
-12. ```python manage.py runserver```
+12. ```
+    python manage.py runserver
+    ```
