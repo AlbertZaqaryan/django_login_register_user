@@ -1,5 +1,8 @@
 1. Create folder in your desktop
-2. git clone https://github.com/AlbertZaqaryan/django_login_register_user.git (in your empty folder)
+2. ```
+   git clone https://github.com/AlbertZaqaryan/django_login_register_user.git
+   ```
+   (in your empty folder)
 3. py -m venv venv
 4. .\venv\Scripts\activate
 5. py -m pip install --upgrade pip
