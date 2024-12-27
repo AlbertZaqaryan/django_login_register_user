@@ -8,6 +8,7 @@ class Book(models.Model):
     author = models.CharField('Book author', max_length=60)
     price = models.PositiveIntegerField('Book price')
     image = models.ImageField('Book images', upload_to='books')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -85,3 +85,24 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("index")
+
+
+def user_page(request):
+    book_list = Book.objects.filter(user=request.user)
+    return render(request, 'user_page.html', context={
+          'book_list':book_list
+    })
+
+
+def add_book(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        author = request.POST.get('author')
+        price = request.POST.get('price')
+        image = request.FILES.get('image')
+        user = request.user
+        Book.objects.create(name=name, author=author, price=price, image=image, user=user)
+        return redirect('user_page')
+    return render(request, 'add_book.html', context={
+          
+    })

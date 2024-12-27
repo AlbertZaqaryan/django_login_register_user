@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}User page{% endblock %}
+
+{% block header %}User{% endblock %}
+
+
+{% block body %}
+<br>
+<br>
+<div class="s600">
+    <a href="{% url 'add_book' %}"><button>Add Book</button></a>
+</div>
+
+<section class="product-list">
+    <h2>Products</h2>
+    <div class="product-container">
+        {% for i in book_list %}
+        <div class="product-card">
+            <h3>{{ i.name }}</h3>
+            <img src="{{ i.image.url }}" alt="Product Image">
+            <p>{{ i.author }}</p>
+            <h5>{{ i.price }}</h5>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

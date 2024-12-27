@@ -9,4 +9,6 @@ urlpatterns=[
     path('logout/', views.logout_request, name='logout'),
     path('add_to_cart/', views.add_to_cart, name='add_to_cart'),
     path('delete_from_cart/', views.delete_from_cart, name='delete_from_cart'),
+    path('user_page/', views.user_page, name='user_page'),
+    path('add_book/', views.add_book, name='add_book'),
 ]

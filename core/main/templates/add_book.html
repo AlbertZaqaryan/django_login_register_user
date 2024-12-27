@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Book{% endblock %}
+
+{% block header %}Add Book{% endblock %}
+
+
+{% block body %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <input type="text" name="name" placeholder="Book name">
+        </p>
+        <p>
+            <input type="text" name="author" placeholder="Book author">
+        </p>
+        <p>
+            <input type="number" name="price" placeholder="Book price">
+        </p>
+        <p>
+            <input type="file" name="image">
+        </p>
+        <button type="submit">Add Book</button>
+    </form>
+
+{% endblock %}
